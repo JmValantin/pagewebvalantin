@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jean-Michel Valantin — Chercheur en études stratégiques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f1923;
+    --ink-muted: #4a5a6b;
+    --ink-light: #8a9db0;
+    --paper: #f7f9fb;
+    --paper-warm: #edf2f7;
+    --paper-dark: #dde5ef;
+    --accent: #1a3d6b;
+    --accent-light: #2e6aad;
+    --rule: #c5d3e0;
+    --serif: 'Playfair Display', Georgia, serif;
+    --body: 'Source Serif 4', Georgia, serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .masthead-label {
+    font-family: var(--body);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+  }
+
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .masthead-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .masthead-bio {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    max-width: 540px;
+    margin-bottom: 2rem;
+    line-height: 1.85;
+  }
+
+  .masthead-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .masthead-links a {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .masthead-links a:hover { color: var(--accent-light); border-color: var(--accent-light); }
+
+  /* Couverture livre */
+  .book-cover-frame {
+    background: var(--paper-dark);
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-left: 1px solid var(--rule);
+  }
+
+  .book-cover-placeholder {
+    width: 180px;
+    background: var(--accent);
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 6px 6px 24px rgba(10,30,60,0.25);
+  }
+
+  .book-cover-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .book-cover-title {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .book-cover-author {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .cover-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--accent);
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    background: var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav ul {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    list-style: none;
+  }
+
+  nav a {
+    display: block;
+    padding: 0.9rem 1.2rem;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-warm);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  nav a:hover { color: #fff; border-bottom-color: var(--accent-light); }
+
+  /* ─── MAIN ─── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* ─── FILTRES ─── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    font-family: var(--body);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--accent-light);
+    color: var(--accent-light);
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* ─── ARTICLE CARDS ─── */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .article-card {
+    background: var(--paper-warm);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: background 0.2s;
+  }
+
+  .article-card:hover { background: var(--paper-dark); }
+
+  .article-card::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 2px;
+    background: var(--accent-light);
+    margin-bottom: 1rem;
+  }
+
+  .article-source {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .article-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .article-meta {
+    font-size: 0.83rem;
+    color: var(--ink-light);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+  }
+
+  .article-excerpt {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .article-link {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  /* ─── PODCASTS (liste) ─── */
+  .podcast-list { display: flex; flex-direction: column; }
+
+  .podcast-item {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .podcast-item:hover .podcast-number { color: var(--accent-light); }
+  .podcast-item:hover .podcast-listen { text-decoration: underline; }
+
+  .podcast-number {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--rule);
+    text-align: center;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .podcast-show {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.15rem;
+  }
+
+  .podcast-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+
+  .podcast-date {
+    font-size: 0.83rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  .podcast-listen {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+
+  .podcast-listen::after { content: ' →'; }
+
+  /* ─── LIVRES ─── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 2rem;
+  }
+
+  .book-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .book-card:hover .book-spine { box-shadow: 8px 8px 28px rgba(10,30,60,0.28); }
+
+  .book-spine {
+    background: var(--accent);
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 5px 5px 18px rgba(10,30,60,0.18);
+    transition: box-shadow 0.2s;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-spine img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .book-spine-title {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-info-title {
+    font-family: var(--serif);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.35rem;
+  }
+
+  .book-badge {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--accent-light);
+    background: var(--paper-dark);
+    padding: 0.2rem 0.5rem;
+    border-left: 2px solid var(--accent-light);
+  }
+
+  /* ─── VOIR PLUS ─── */
+  .load-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .load-more-btn {
+    font-family: var(--body);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .load-more-btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .load-more-btn:disabled {
+    display: none;
+  }
+
+  .empty-msg {
+    color: var(--ink-light);
+    font-style: italic;
+    font-size: 0.95rem;
+    padding: 1rem 0;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-email {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent-light);
+    padding-bottom: 2px;
+  }
+
+  .contact-email:hover { color: var(--accent-light); }
+
+  .affiliation-block {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+
+  .affiliation-block p {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+
+  .affiliation-block strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: var(--ink-light);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer a { color: var(--paper-warm); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .masthead-inner { grid-template-columns: 1fr; }
+    .book-cover-frame { height: 220px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .podcast-item { grid-template-columns: 44px 1fr; }
+    .podcast-listen { display: none; }
+    .books-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="masthead-label">Géopolitique · Stratégie · IA</p>
+      <h1>Jean-Michel<br>Valantin</h1>
+      <p class="masthead-title">PhD — Études stratégiques et sociologie de la Défense</p>
+      <p class="masthead-bio">
+        Je travaille sur les effets géopolitiques et stratégiques du changement climatique,
+        de la compétition pour les ressources et de la transformation de la guerre en
+        hyperguerre par l'intelligence artificielle.
+      </p>
+      <div class="masthead-links">
+        <a href="#articles">Articles</a>
+        <a href="#podcasts">Podcasts</a>
+        <a href="#livres">Livres</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <!-- Couverture du dernier livre -->
+    <div class="book-cover-frame">
+      <!--
+        Pour afficher la vraie couverture, remplacez le bloc .book-cover-placeholder
+        par : <img src="couverture.jpg" alt="Couverture du livre" style="width:100%;height:100%;object-fit:cover;">
+      -->
+      <div class="book-cover-placeholder">
+        <p class="book-cover-title">Hyperguerre<br>Comment l'IA<br>révolutionne la guerre</p>
+        <p class="book-cover-author">Jean-Michel Valantin · 2024</p>
+      </div>
+      <p class="cover-caption">Dernier ouvrage publié</p>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav aria-label="Navigation principale">
+  <ul>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#podcasts">Podcasts</a></li>
+    <li><a href="#livres">Livres</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ARTICLES -->
+  <section id="articles">
+    <p class="section-label">Analyses & publications</p>
+    <h2 class="section-title">Articles</h2>
+    <div class="filter-bar" id="articles-filters"></div>
+    <div class="articles-grid" id="articles-grid"></div>
+    <div class="load-more-wrap">
+      <button class="load-more-btn" id="articles-more">Voir plus</button>
+    </div>
+  </section>
+
+  <!-- PODCASTS -->
+  <section id="podcasts">
+    <p class="section-label">Interventions & médias</p>
+    <h2 class="section-title">Podcasts</h2>
+    <div class="filter-bar" id="podcasts-filters"></div>
+    <div class="podcast-list" id="podcasts-list"></div>
+    <div class="load-more-wrap">
+      <button class="load-more-btn" id="podcasts-more">Voir plus</button>
+    </div>
+  </section>
+
+  <!-- LIVRES -->
+  <section id="livres">
+    <p class="section-label">Ouvrages</p>
+    <h2 class="section-title">Livres</h2>
+    <div class="books-grid" id="books-grid"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Écrire</p>
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-grid">
+      <div>
+        <p class="contact-text">
+          Pour toute demande d'intervention, d'entretien ou de collaboration,
+          n'hésitez pas à me contacter directement par e-mail.
+        </p>
+        <a class="contact-email" href="mailto:jeanmichel.valantin@gmail.com">
+          jeanmichel.valantin@gmail.com
+        </a>
+      </div>
+
+      <div class="affiliation-block">
+        <strong>Affiliation</strong>
+        <p>
+          Centre de recherches politiques de Sciences Po (CEVIPOF)<br>
+          CNRS – Sciences Po
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Jean-Michel Valantin</p>
+</footer>
+
+<!-- PapaParse pour lire le CSV -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+const PAGE_SIZE = 6;
+
+let allRefs = [];
+let articleFilter = 'Toutes';
+let podcastFilter = 'Toutes';
+let articlesShown = PAGE_SIZE;
+let podcastsShown = PAGE_SIZE;
+
+// tri par date décroissante (les dates au format JJ/MM/AAAA ; vide = en dernier)
+function parseDate(d) {
+  if (!d) return 0;
+  const parts = d.split('/');
+  if (parts.length !== 3) return 0;
+  const [dd, mm, yyyy] = parts;
+  return new Date(`${yyyy}-${mm}-${dd}`).getTime();
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function buildFilters(containerId, items, currentFilter, onSelect) {
+  const cats = ['Toutes', ...new Set(items.map(i => i.categorie).filter(c => c))];
+  const el = document.getElementById(containerId);
+  el.innerHTML = cats.map(c =>
+    `<button class="filter-btn ${c === currentFilter ? 'active' : ''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`
+  ).join('');
+  el.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => onSelect(btn.dataset.cat));
+  });
+}
+
+function renderArticles() {
+  const articles = allRefs
+    .filter(r => r.type === 'Article')
+    .sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+  buildFilters('articles-filters', articles, articleFilter, (cat) => {
+    articleFilter = cat;
+    articlesShown = PAGE_SIZE;
+    renderArticles();
+  });
+
+  const filtered = articleFilter === 'Toutes'
+    ? articles
+    : articles.filter(a => a.categorie === articleFilter);
+
+  const grid = document.getElementById('articles-grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p class="empty-msg">Aucun article dans cette catégorie pour le moment.</p>';
+  } else {
+    const visible = filtered.slice(0, articlesShown);
+    grid.innerHTML = visible.map(a => `
+      <a class="article-card" href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">
+        <p class="article-source">${escapeHtml(a.source || a.categorie)}</p>
+        <h3 class="article-title">${escapeHtml(a.titre)}</h3>
+        <p class="article-meta">${escapeHtml(a.date)}</p>
+        ${a.resume ? `<p class="article-excerpt">${escapeHtml(a.resume)}</p>` : ''}
+        <span class="article-link">Lire l'article</span>
+      </a>
+    `).join('');
+  }
+
+  const moreBtn = document.getElementById('articles-more');
+  moreBtn.disabled = articlesShown >= filtered.length;
+}
+
+function renderPodcasts() {
+  const podcasts = allRefs
+    .filter(r => r.type === 'Podcast')
+    .sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+  buildFilters('podcasts-filters', podcasts, podcastFilter, (cat) => {
+    podcastFilter = cat;
+    podcastsShown = PAGE_SIZE;
+    renderPodcasts();
+  });
+
+  const filtered = podcastFilter === 'Toutes'
+    ? podcasts
+    : podcasts.filter(p => p.categorie === podcastFilter);
+
+  const list = document.getElementById('podcasts-list');
+  if (filtered.length === 0) {
+    list.innerHTML = '<p class="empty-msg">Aucun podcast dans cette catégorie pour le moment.</p>';
+  } else {
+    const visible = filtered.slice(0, podcastsShown);
+    list.innerHTML = visible.map((p, idx) => `
+      <a class="podcast-item" href="${escapeHtml(p.lien)}" target="_blank" rel="noopener">
+        <div class="podcast-number">${String(idx + 1).padStart(2, '0')}</div>
+        <div>
+          <p class="podcast-show">${escapeHtml(p.source || p.categorie)}</p>
+          <p class="podcast-title">${escapeHtml(p.titre)}</p>
+          <p class="podcast-date">${escapeHtml(p.date)}</p>
+        </div>
+        <span class="podcast-listen">Écouter</span>
+      </a>
+    `).join('');
+  }
+
+  const moreBtn = document.getElementById('podcasts-more');
+  moreBtn.disabled = podcastsShown >= filtered.length;
+}
+
+function renderBooks() {
+  const books = allRefs.filter(r => r.type === 'Livre');
+  const grid = document.getElementById('books-grid');
+  grid.innerHTML = books.map(b => `
+    <a class="book-card" href="${escapeHtml(b.lien)}" target="_blank" rel="noopener">
+      <div class="book-spine">
+        <p class="book-spine-title">${escapeHtml(b.titre)}</p>
+      </div>
+      <p class="book-info-title">${escapeHtml(b.titre)}</p>
+      ${b.prix ? `<span class="book-badge">${escapeHtml(b.prix)}</span>` : ''}
+    </a>
+  `).join('');
+}
+
+document.getElementById('articles-more').addEventListener('click', () => {
+  articlesShown += PAGE_SIZE;
+  renderArticles();
+});
+
+document.getElementById('podcasts-more').addEventListener('click', () => {
+  podcastsShown += PAGE_SIZE;
+  renderPodcasts();
+});
+
+// Charger le CSV
+Papa.parse('references.csv', {
+  download: true,
+  header: true,
+  skipEmptyLines: true,
+  complete: function(results) {
+    allRefs = results.data.map(r => ({
+      type: (r.type || '').trim(),
+      categorie: (r.categorie || '').trim(),
+      titre: (r.titre || '').trim(),
+      lien: (r.lien || '').trim(),
+      resume: (r.resume || '').trim(),
+      date: (r.date || '').trim(),
+      source: (r.source || '').trim(),
+      prix: (r.prix || '').trim()
+    }));
+    renderArticles();
+    renderPodcasts();
+    renderBooks();
+  },
+  error: function(err) {
+    console.error('Erreur de chargement du CSV:', err);
+    document.getElementById('articles-grid').innerHTML =
+      '<p class="empty-msg">Impossible de charger references.csv. Vérifiez qu\'il est bien à la racine du site.</p>';
+  }
+});
+</script>
+
+</body>
+</html>
