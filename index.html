@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr Jean-Michel Valantin — Chercheur en études stratégiques</title>
+<title>Jean-Michel Valantin — Chercheur en études stratégiques</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
@@ -109,8 +109,7 @@
   /* Couverture livre */
   .book-cover-frame {
     background: var(--paper-dark);
-    height: auto;
-   aspect-ratio: 798 / 1294;
+    height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,14 +117,7 @@
     overflow: hidden;
     border-left: 1px solid var(--rule);
   }
-.book-cover-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+
   .book-cover-placeholder {
     width: 180px;
     background: var(--accent);
@@ -581,7 +573,7 @@
   <div class="masthead-inner">
     <div>
       <p class="masthead-label">Géopolitique · Stratégie · IA</p>
-      <h1>Dr Jean-Michel<br>Valantin</h1>
+      <h1>Jean-Michel<br>Valantin</h1>
       <p class="masthead-title">PhD — Études stratégiques et sociologie de la Défense</p>
       <p class="masthead-bio">
         Je travaille sur les effets géopolitiques et stratégiques du changement climatique,
@@ -597,14 +589,17 @@
     </div>
 
     <!-- Couverture du dernier livre -->
+    <div class="book-cover-frame">
       <!--
         Pour afficher la vraie couverture, remplacez le bloc .book-cover-placeholder
         par : <img src="couverture.jpg" alt="Couverture du livre" style="width:100%;height:100%;object-fit:cover;">
       -->
-     <div class="book-cover-frame">
-  <img src="Hyperguerre.png" alt="Couverture du livre" class="book-cover-img">
-  <p class="cover-caption">Dernier ouvrage publié</p>
-</div>
+      <div class="book-cover-placeholder">
+        <p class="book-cover-title">Hyperguerre<br>Comment l'IA<br>révolutionne la guerre</p>
+        <p class="book-cover-author">Jean-Michel Valantin · 2024</p>
+      </div>
+      <p class="cover-caption">Dernier ouvrage publié</p>
+    </div>
   </div>
 </header>
 
@@ -794,11 +789,8 @@ function renderBooks() {
   const grid = document.getElementById('books-grid');
   grid.innerHTML = books.map(b => `
     <a class="book-card" href="${escapeHtml(b.lien)}" target="_blank" rel="noopener">
-      <div class="book-spine"${b.image ? ' style="padding:0;"' : ''}>
-        ${b.image
-          ? `<img src="${escapeHtml(b.image)}" alt="Couverture de ${escapeHtml(b.titre)}" style="display:block; width:100%; height:100%; object-fit:cover; object-position:center;">`
-          : `<p class="book-spine-title">${escapeHtml(b.titre)}</p>`
-        }
+      <div class="book-spine">
+        <p class="book-spine-title">${escapeHtml(b.titre)}</p>
       </div>
       <p class="book-info-title">${escapeHtml(b.titre)}</p>
       ${b.prix ? `<span class="book-badge">${escapeHtml(b.prix)}</span>` : ''}
@@ -830,8 +822,7 @@ Papa.parse('references.csv', {
       resume: (r.resume || '').trim(),
       date: (r.date || '').trim(),
       source: (r.source || '').trim(),
-      prix: (r.prix || '').trim(),
-      image: (r.image || '').trim()
+      prix: (r.prix || '').trim()
     }));
     renderArticles();
     renderPodcasts();
