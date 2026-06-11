@@ -117,7 +117,14 @@
     overflow: hidden;
     border-left: 1px solid var(--rule);
   }
-
+.book-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
   .book-cover-placeholder {
     width: 180px;
     background: var(--accent);
@@ -590,15 +597,16 @@
     </div>
 
     <!-- Couverture du dernier livre -->
-    <div class="book-cover-frame">
+   
       <!--
         Pour afficher la vraie couverture, remplacez le bloc .book-cover-placeholder
         par : <img src="couverture.jpg" alt="Couverture du livre" style="width:100%;height:100%;object-fit:cover;">
       -->
-      <div class="book-cover-placeholder">
-        <p class="book-cover-title">Hyperguerre<br>Comment l'IA<br>révolutionne la guerre</p>
-        <p class="book-cover-author">Jean-Michel Valantin · 2024</p>
-      </div>
+     <div class="book-cover-frame">
+  <img src="Hyperguerre.png" alt="Couverture du livre" class="book-cover-img">
+  <p class="cover-caption">Dernier ouvrage publié</p>
+</div>
+   
       <p class="cover-caption">Dernier ouvrage publié</p>
     </div>
   </div>
