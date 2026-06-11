@@ -409,7 +409,8 @@
 
   .book-spine {
     background: var(--accent);
-    height: 260px;
+    height: auto;
+    aspect-ratio: 798 / 1294;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -789,8 +790,11 @@ function renderBooks() {
   const grid = document.getElementById('books-grid');
   grid.innerHTML = books.map(b => `
     <a class="book-card" href="${escapeHtml(b.lien)}" target="_blank" rel="noopener">
-      <div class="book-spine">
-        <p class="book-spine-title">${escapeHtml(b.titre)}</p>
+      <div class="book-spine"${b.image ? ' style="padding:0;"' : ''}>
+        ${b.image
+          ? `<img src="${escapeHtml(b.image)}" alt="Couverture de ${escapeHtml(b.titre)}" style="display:block; width:100%; height:100%; object-fit:cover; object-position:center;">`
+          : `<p class="book-spine-title">${escapeHtml(b.titre)}</p>`
+        }
       </div>
       <p class="book-info-title">${escapeHtml(b.titre)}</p>
       ${b.prix ? `<span class="book-badge">${escapeHtml(b.prix)}</span>` : ''}
@@ -822,7 +826,8 @@ Papa.parse('references.csv', {
       resume: (r.resume || '').trim(),
       date: (r.date || '').trim(),
       source: (r.source || '').trim(),
-      prix: (r.prix || '').trim()
+      prix: (r.prix || '').trim(),
+      image: (r.image || '').trim()
     }));
     renderArticles();
     renderPodcasts();
