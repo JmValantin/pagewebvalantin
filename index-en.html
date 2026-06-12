@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr Jean-Michel Valantin — Chercheur en études stratégiques</title>
+<title>Dr Jean-Michel Valantin — Strategic Studies Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
@@ -580,20 +580,20 @@
 <header class="masthead">
   <div class="masthead-inner">
     <div>
-      <p class="masthead-label">Géopolitique · Stratégie · IA</p>
+      <p class="masthead-label">Geopolitics · Strategy · AI</p>
       <h1>Dr Jean-Michel<br>Valantin</h1>
-      <p class="masthead-title">PhD — Études stratégiques et sociologie de la Défense</p>
+      <p class="masthead-title">PhD — Strategic Studies and Sociology of Defense</p>
       <p class="masthead-bio">
-        Je travaille sur les effets géopolitiques et stratégiques du changement climatique,
-        de la compétition pour les ressources et de la transformation de la guerre en
-        hyperguerre par l'intelligence artificielle.
+        My work focuses on the geopolitical and strategic effects of climate change,
+        resource competition, and the transformation of warfare into hyperwar
+        through artificial intelligence.
       </p>
       <div class="masthead-links">
         <a href="#articles">Articles</a>
         <a href="#podcasts">Podcasts</a>
-        <a href="#livres">Livres</a>
+        <a href="#books">Books</a>
         <a href="#contact">Contact</a>
-        <a href="index-en.html">EN</a>
+        <a href="index.html">FR</a>
       </div>
     </div>
 
@@ -605,7 +605,7 @@
       -->
     <div class="book-cover-frame">
   <img src="Hyperguerre.png" alt="Couverture du livre" class="book-cover-img">
-  <p class="cover-caption">Dernier ouvrage publié</p>
+  <p class="cover-caption">Latest book published</p>
 </div>
 </header>
 
@@ -614,7 +614,7 @@
   <ul>
     <li><a href="#articles">Articles</a></li>
     <li><a href="#podcasts">Podcasts</a></li>
-    <li><a href="#livres">Livres</a></li>
+    <li><a href="#books">Books</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -623,43 +623,43 @@
 
   <!-- ARTICLES -->
   <section id="articles">
-    <p class="section-label">Analyses & publications</p>
+    <p class="section-label">Analyses & Publications</p>
     <h2 class="section-title">Articles</h2>
     <div class="filter-bar" id="articles-filters"></div>
     <div class="articles-grid" id="articles-grid"></div>
     <div class="load-more-wrap">
-      <button class="load-more-btn" id="articles-more">Voir plus</button>
+      <button class="load-more-btn" id="articles-more">Show more</button>
     </div>
   </section>
 
   <!-- PODCASTS -->
   <section id="podcasts">
-    <p class="section-label">Interventions & médias</p>
+    <p class="section-label">Talks & Media</p>
     <h2 class="section-title">Podcasts</h2>
     <div class="filter-bar" id="podcasts-filters"></div>
     <div class="podcast-list" id="podcasts-list"></div>
     <div class="load-more-wrap">
-      <button class="load-more-btn" id="podcasts-more">Voir plus</button>
+      <button class="load-more-btn" id="podcasts-more">Show more</button>
     </div>
   </section>
 
-  <!-- LIVRES -->
-  <section id="livres">
-    <p class="section-label">Ouvrages</p>
-    <h2 class="section-title">Livres</h2>
+  <!-- BOOKS -->
+  <section id="books">
+    <p class="section-label">Books</p>
+    <h2 class="section-title">Books</h2>
     <div class="books-grid" id="books-grid"></div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <p class="section-label">Écrire</p>
+    <p class="section-label">Get in touch</p>
     <h2 class="section-title">Contact</h2>
 
     <div class="contact-grid">
       <div>
         <p class="contact-text">
-          Pour toute demande d'intervention, d'entretien ou de collaboration,
-          n'hésitez pas à me contacter directement par e-mail ou sur LinkedIn.
+          For speaking engagements, interviews, or research collaboration,
+          feel free to reach out directly by email or on LinkedIn.
         </p>
 
 <a class="contact-email" href="mailto:jeanmichel.valantin@gmail.com">
@@ -675,7 +675,7 @@
       <div class="affiliation-block">
         <strong>Affiliation</strong>
         <p>
-          Centre de recherches politiques de Sciences Po (CEVIPOF)<br>
+          Centre for Political Research at Sciences Po (CEVIPOF)<br>
           CNRS – Sciences Po
         </p>
       </div>
@@ -694,8 +694,8 @@
 const PAGE_SIZE = 6;
 
 let allRefs = [];
-let articleFilter = 'Toutes';
-let podcastFilter = 'Toutes';
+let articleFilter = 'All';
+let podcastFilter = 'All';
 let articlesShown = PAGE_SIZE;
 let podcastsShown = PAGE_SIZE;
 
@@ -714,7 +714,7 @@ function escapeHtml(str) {
 }
 
 function buildFilters(containerId, items, currentFilter, onSelect) {
-  const cats = ['Toutes', ...new Set(items.map(i => i.categorie).filter(c => c))];
+  const cats = ['All', ...new Set(items.map(i => i.categorie).filter(c => c))];
   const el = document.getElementById(containerId);
   el.innerHTML = cats.map(c =>
     `<button class="filter-btn ${c === currentFilter ? 'active' : ''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`
@@ -735,13 +735,13 @@ function renderArticles() {
     renderArticles();
   });
 
-  const filtered = articleFilter === 'Toutes'
+  const filtered = articleFilter === 'All'
     ? articles
     : articles.filter(a => a.categorie === articleFilter);
 
   const grid = document.getElementById('articles-grid');
   if (filtered.length === 0) {
-    grid.innerHTML = '<p class="empty-msg">Aucun article dans cette catégorie pour le moment.</p>';
+    grid.innerHTML = '<p class="empty-msg">No articles in this category yet.</p>';
   } else {
     const visible = filtered.slice(0, articlesShown);
     grid.innerHTML = visible.map(a => `
@@ -750,7 +750,7 @@ function renderArticles() {
         <h3 class="article-title">${escapeHtml(a.titre)}</h3>
         <p class="article-meta">${escapeHtml(a.date)}</p>
         ${a.resume ? `<p class="article-excerpt">${escapeHtml(a.resume)}</p>` : ''}
-        <span class="article-link">Lire l'article</span>
+        <span class="article-link">Read article</span>
       </a>
     `).join('');
   }
@@ -770,13 +770,13 @@ function renderPodcasts() {
     renderPodcasts();
   });
 
-  const filtered = podcastFilter === 'Toutes'
+  const filtered = podcastFilter === 'All'
     ? podcasts
     : podcasts.filter(p => p.categorie === podcastFilter);
 
   const list = document.getElementById('podcasts-list');
   if (filtered.length === 0) {
-    list.innerHTML = '<p class="empty-msg">Aucun podcast dans cette catégorie pour le moment.</p>';
+    list.innerHTML = '<p class="empty-msg">No podcasts in this category yet.</p>';
   } else {
     const visible = filtered.slice(0, podcastsShown);
     list.innerHTML = visible.map((p, idx) => `
@@ -787,7 +787,7 @@ function renderPodcasts() {
           <p class="podcast-title">${escapeHtml(p.titre)}</p>
           <p class="podcast-date">${escapeHtml(p.date)}</p>
         </div>
-        <span class="podcast-listen">Écouter</span>
+        <span class="podcast-listen">Listen</span>
       </a>
     `).join('');
   }
@@ -797,7 +797,7 @@ function renderPodcasts() {
 }
 
 function renderBooks() {
-  const books = allRefs.filter(r => r.type === 'Livre');
+  const books = allRefs.filter(r => r.type === 'Book');
   const grid = document.getElementById('books-grid');
   grid.innerHTML = books.map(b => `
     <a class="book-card" href="${escapeHtml(b.lien)}" target="_blank" rel="noopener">
@@ -824,7 +824,7 @@ document.getElementById('podcasts-more').addEventListener('click', () => {
 });
 
 // Charger le CSV
-Papa.parse('references.csv', {
+Papa.parse('references-en.csv', {
   download: true,
   header: true,
   skipEmptyLines: true,
@@ -845,9 +845,9 @@ Papa.parse('references.csv', {
     renderBooks();
   },
   error: function(err) {
-    console.error('Erreur de chargement du CSV:', err);
+    console.error('CSV loading error:', err);
     document.getElementById('articles-grid').innerHTML =
-      '<p class="empty-msg">Impossible de charger references.csv. Vérifiez qu\'il est bien à la racine du site.</p>';
+      '<p class="empty-msg">Unable to load references.csv. Check that it is at the root of the site.</p>';
   }
 });
 </script>
